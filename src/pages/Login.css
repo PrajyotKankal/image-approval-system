@@ -1,0 +1,199 @@
+/* ✅ Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #fce1f4, #e3f0ff);
+  overflow-x: hidden;
+}
+
+/* ✅ Main Container */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+  z-index: 1;
+  gap: 2rem;
+}
+
+/* ✅ Login Form Area */
+.login-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(14px);
+  border-radius: 24px;
+  padding: 2.2rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  animation: fadeInUp 0.6s ease;
+}
+
+.card h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 1.8rem;
+  text-align: center;
+}
+
+/* ✅ Input Fields */
+.form-control {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: none;
+  background: #f7f7f7;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #d6a4fc;
+}
+
+.form-control::placeholder {
+  color: #aaa;
+}
+
+/* ✅ Forgot Link */
+.forgot-link {
+  display: block;
+  text-align: right;
+  font-size: 0.85rem;
+  color: #8b5efb;
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Button */
+.btn-primary {
+  background: linear-gradient(to right, #da7efb, #8b5efb);
+  border: none;
+  color: white;
+  padding: 0.8rem;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.3s ease;
+  box-shadow: 0 8px 20px rgba(139, 94, 251, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to right, #c278f5, #7b4be3);
+}
+
+/* ✅ Signup Link */
+.card p {
+  margin-top: 1.2rem;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.signup-link {
+  color: #8b5efb;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+/* ✅ Illustration Section */
+.right-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.8s ease;
+  z-index: 1;
+}
+
+.right-image img {
+  max-width: 70%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+}
+
+/* ✅ Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    padding: 2rem 1rem;
+  }
+
+  .right-image {
+    animation: dropdownFade 0.6s ease-in;
+    margin-bottom: -2rem;
+    opacity: 0.85;
+  }
+
+  @keyframes dropdownFade {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 0.85;
+      transform: translateY(0);
+    }
+  }
+
+  .card {
+    margin-top: -3rem;
+    z-index: 2;
+  }
+}

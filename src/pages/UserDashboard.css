@@ -1,0 +1,227 @@
+
+:root {
+  --first-color: #defcf9;
+  --second-color: #cadefc;
+  --third-color: #c3bef0;
+  --fourth-color: #cca8e9;
+  --text-dark: #2c3e50;
+  --text-light: #555;
+  --card-bg: #ffffff;
+  --hover-bg: #f1f1f1;
+  --transition: 0.3s ease;
+}
+
+body.dark-mode {
+  --first-color: #1e1e2f;
+  --second-color: #2a2a3d;
+  --third-color: #3c3c57;
+  --fourth-color: #55557a;
+  --text-dark: #e0e0e0;
+  --text-light: #aaa;
+  --card-bg: #2a2a3d;
+  --hover-bg: #3b3b4f;
+}
+
+body, html, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--first-color);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  background-color: var(--second-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex-wrap: nowrap;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  flex: 1;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  width: auto;
+}
+
+.btn,
+.dropdown > button {
+  padding: 10px 18px;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background-color var(--transition), transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn.brown {
+  background-color: var(--third-color);
+  color: #fff;
+}
+.btn.brown:hover {
+  background-color: var(--fourth-color);
+}
+
+.btn.blue {
+  background-color: var(--fourth-color);
+  color: #fff;
+}
+.btn.blue:hover {
+  background-color: var(--third-color);
+}
+
+.cart-btn {
+  position: relative;
+}
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background-color: #ff4d4f;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 3px 6px;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  min-width: 20px;
+  text-align: center;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 320px;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  overflow-y: auto;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+
+.cart-item,
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.cart-item {
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.history-item {
+  background-color: var(--card-bg);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.cart-item img,
+.history-item img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.history-item img {
+  width: 60px;
+  height: 60px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.history-filename {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  margin: 0;
+}
+
+.history-date {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+.profile-dropdown {
+  position: relative;
+}
+
+.profile-icon {
+  background: linear-gradient(145deg, #f0f0f0, #dcdcdc);
+  border: 3px solid #3498db;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.profile-icon:hover {
+  background: #e0f3ff;
+  transform: scale(1.05);
+}
+
+.profile-menu {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 10px;
+  min-width: 180px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  animation: fadeSlideDown 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}

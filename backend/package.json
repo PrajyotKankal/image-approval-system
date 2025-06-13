@@ -1,0 +1,32 @@
+{
+  "name": "image-request-backend",
+  "version": "1.0.0",
+  "description": "Backend for image request and download app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.6.1",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.5.0",
+    "exceljs": "^4.4.0",
+    "express": "^4.21.2",
+    "file-saver": "^2.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "jszip": "^3.10.1",
+    "jwt-decode": "^4.0.0",
+    "mongoose": "^7.8.7",
+    "multer": "^2.0.0",
+    "nodemailer": "^7.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}
