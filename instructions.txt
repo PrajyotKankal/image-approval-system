@@ -1,0 +1,99 @@
+===========================
+IMAGLE - USER & ADMIN GUIDE
+===========================
+
+Project Name: Imagle
+Description: A full-stack Image Request and Approval System built with ReactJS, NodeJS, Express, and MongoDB.
+
+=================
+🚀 ABOUT THE APP
+=================
+Imagle allows users to browse, search, and request access to images.
+Admins can approve/reject image requests, upload new images, and manage tags, users, and insights.
+
+The system includes:
+- Tag-based image search
+- Add to cart functionality
+- Request approval flow
+- Admin dashboard with image uploads, tag management, analytics
+- Downloadable approved images
+- Excel export of request data
+- Role-based login system (admin/user)
+- Dark/light mode toggle
+
+=======================
+👤 USER INSTRUCTIONS
+=======================
+1. Visit the login page and log in using your user credentials.
+2. Search for images using the search bar (name or tags).
+3. Add images to your cart.
+4. Go to the cart dropdown and click “Request Access” to send a request to the admin.
+5. Once the admin approves your request, download links will appear under the “Approved” dropdown.
+6. You can only download each approved image once. After download, it moves to download history.
+7. Use the profile dropdown to log out or view your details.
+
+=========================
+🛡️ ADMIN INSTRUCTIONS
+=========================
+1. Log in using admin credentials.
+2. You will be redirected to the User Dashboard with access to Admin Tools via the profile dropdown.
+3. From the dropdown, click “Admin Dashboard”.
+
+-- Admin Dashboard Sections --
+
+🔹 Overview:
+   - View total requests, approved/rejected stats.
+   - Visual charts (Line/Bar) for requests by date/month.
+   - Tag summary for uploaded images.
+   - Export data as Excel file.
+
+🔹 Upload:
+   - Upload multiple images with comma-separated tags.
+   - Filter uploaded images by tags.
+   - Edit or delete any uploaded image.
+   - Click an image to view it fullscreen.
+
+🔹 Requests:
+   - View user requests (New and Older).
+   - Approve or reject image requests with one click.
+
+🔹 Insights:
+   - View all registered users and admins.
+   - Add a new admin by entering a username and password.
+
+🔹 Switch to User Mode:
+   - Use the “Act as User” button to return to the regular user dashboard.
+
+===========================
+🛠️ TECH USED
+===========================
+Frontend:
+- ReactJS
+- CSS + Bootstrap
+- React Router
+- Framer Motion, Toastify
+
+Backend:
+- NodeJS
+- Express
+- MongoDB
+- Multer (for image uploads)
+- JWT (Authentication)
+
+===========================
+📂 FOLDER STRUCTURE
+===========================
+/frontend
+  - React App with all components and pages
+/backend
+  - Express API routes, MongoDB models, and auth
+/assets
+  - Contains the Imagle logo
+
+===========================
+📞 SUPPORT
+===========================
+For any issues, contact the developer or raise an issue on GitHub.
+
+Developed by: Prajyot Prakash Kankal
+GitHub: https://github.com/your-github-username/imagle
