@@ -763,7 +763,7 @@ const renderInsightsSection = () => {
           <button className={`btn ${active === 'requests' ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => setActive('requests')}>Image Requests</button>
           <button className={`btn ${active === 'insights' ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => setActive('insights')}>Insights</button>
           <hr />
-          <button className="btn btn-outline-danger" onClick={handleLogout}>🚪 Act as User</button>
+          <button className="btn btn-outline-danger" onClick={handleLogout}>🚪 Back to Panel</button>
         </div>
       </div>
 

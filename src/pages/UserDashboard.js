@@ -227,10 +227,10 @@ const UserDashboard = () => {
                 {userRole === 'admin' && (
                   <p className="dropdown-item" onClick={() => navigate('/admin/dashboard')}>🛠️ Admin Tools</p>
                 )}
-                <p className="dropdown-item" onClick={() => document.querySelector('.dark-toggle')?.click()}>
+                <button className="dropdown-item" onClick={() => document.querySelector('.dark-toggle')?.click()}>
                   <DarkModeToggle />
-                </p>
-                <p className="dropdown-item" onClick={handleLogout}>🚪 Logout</p>
+                </button>
+                <button className="dropdown-item" onClick={handleLogout}>🚪 Logout</button>
               </div>
             )}
           </div>
