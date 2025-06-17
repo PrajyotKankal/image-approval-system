@@ -4,9 +4,9 @@ Imagle is a full-stack web application designed for secure internal image access
 
 ---
 
-## 🧩 Features
+## Features
 
-### 👤 User
+### User
 - Sign Up & Login (with OTP verification)
 - Persistent Login using JWT
 - Search images by tags
@@ -17,7 +17,7 @@ Imagle is a full-stack web application designed for secure internal image access
 - Dark mode toggle
 - Profile dropdown with logout
 
-### 🛡️ Admin
+### Admin
 - Protected admin login with credentials
 - Role-based access control via JWT
 - Upload images with tags
@@ -28,7 +28,7 @@ Imagle is a full-stack web application designed for secure internal image access
 
 ---
 
-## 🏗️ Tech Stack
+## Tech Stack
 
 | Layer       | Technologies Used                                           |
 |------------|-------------------------------------------------------------|
@@ -41,7 +41,7 @@ Imagle is a full-stack web application designed for secure internal image access
 
 ---
 
-## 🔐 Authentication & Admin Handling
+## Authentication & Admin Handling
 
 ### JWT Authentication
 - JWT stores `{ username, role }` payload.
@@ -55,60 +55,12 @@ Imagle is a full-stack web application designed for secure internal image access
 
 ---
 
-## 📊 Project Flow
+## Project Flow
 
-### 🔐 User Authentication Flow
+### User Authentication Flow
 ![User Authentication Flow](./assets/user-authentication.png)
 
-### 🧠 User/Admin Dashboard Flow
+### User/Admin Dashboard Flow
 ![User Admin Flow](./assets/dashboard-flow.png)
 ---
 
-## 💎 Why Use Imagle?
-
-### 1. Controlled Access to Digital Assets
-Only approved users can download images—preventing unauthorized access to sensitive or premium content.
-
-### 2. Secure Role-Based System
-Clear separation between user/admin functionalities using JWT, minimizing exposure.
-
-### 3. Streamlined Request Management
-Multi-image request, one-time ZIP download—optimized for user experience and admin efficiency.
-
-### 4. Full Activity Insights
-Admins can track:
-- Daily request volume
-- Most used tags
-- User activity logs
-- Admin login/logout data
-
-### 5. Tag-Based Search
-Boost discoverability of large image libraries via efficient tagging and search functionality.
-
-### 6. Dynamic Admin Tools
-Admins can:
-- Upload/edit tagged images
-- Manage pending requests
-- Create new admin users
-- Access all tools from a modern dashboard
-
-### 7. Beautiful UI/UX
-Built with Framer Motion, Bootstrap, and dark mode support—providing a responsive, polished, and professional experience.
-
----
-
-## 🌍 Real-World Applications
-
-| Sector               | Use Cases                                                                 |
-|----------------------|---------------------------------------------------------------------------|
-| Corporate Teams       | Share branded assets securely with internal departments.                 |
-| Photography Studios   | Deliver client-specific shoot results with controlled access.            |
-| Educational Institutes| Share study materials with managed access control.                       |
-| Creative Agencies     | Share and approve UI drafts, illustrations, and client mockups.          |
-| Government & Legal    | Manage access to media/evidence with approval tracking.                  |
-| E-commerce Teams      | Centralized product image approval and download management.              |
-
----
-
-## 📞 Contact
-For queries, suggestions, or contributions, feel free to connect with the project creator
