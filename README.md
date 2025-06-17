@@ -57,14 +57,11 @@ Imagle is a full-stack web application designed for secure internal image access
 
 ## 📊 Project Flow
 
-### 1️⃣ User Authentication Flow
+### 🔐 User Authentication Flow
+![User Authentication Flow](./assets/user-authentication.png)
 
-![User Authentication](./User%20Authentication.drawio.png)
-
-### 2️⃣ Admin/User Dashboard Flow
-
-![Backend Flow](./User_Admin%20Identification%20and%20Backend.drawio.png)
-
+### 🧠 User/Admin Dashboard Flow
+![User Admin Flow](./assets/dashboard-flow.png)
 ---
 
 ## 💎 Why Use Imagle?
