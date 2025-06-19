@@ -65,11 +65,11 @@ Imagle is a full-stack web application designed for secure internal image access
 ---
 
 
-# 📘 Imagle - Complete API Documentation (Frontend + Backend)
+# Imagle - Complete API Documentation (Frontend + Backend)
 
 ---
 
-## 🛠️ Backend API Endpoints
+## Backend API Endpoints
 
 | Method | Path                    | File                  | Purpose                                              |
 |--------|-------------------------|-----------------------|------------------------------------------------------|
@@ -98,7 +98,7 @@ Imagle is a full-stack web application designed for secure internal image access
 
 ---
 
-## 🎨 Frontend API Calls
+## Frontend API Calls
 
 | Method | Path                                               | File              | Purpose                                                |
 |--------|----------------------------------------------------|-------------------|--------------------------------------------------------|
@@ -121,4 +121,4 @@ Imagle is a full-stack web application designed for secure internal image access
 
 ---
 
-> ℹ️ All protected routes require the `Authorization: Bearer <JWT_TOKEN>` header.
+> All protected routes require the `Authorization: Bearer <JWT_TOKEN>` header.
