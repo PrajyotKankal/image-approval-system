@@ -121,4 +121,3 @@ Imagle is a full-stack web application designed for secure internal image access
 
 ---
 
-> All protected routes require the `Authorization: Bearer <JWT_TOKEN>` header.
