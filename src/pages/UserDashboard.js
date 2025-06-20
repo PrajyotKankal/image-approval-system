@@ -130,12 +130,9 @@ const UserDashboard = () => {
 
   return (
     <div className="dashboard">
-      {/* Header */}
       <div className={`dashboard-header ${searchStarted ? 'pinned' : ''}`}>
         <div className="logo">Imagle</div>
-
         <div className="header-actions">
-          {/* Cart */}
           <div className="dropdown">
             <button className="btn blue cart-btn" onClick={() => setShowCartDropdown(!showCartDropdown)}>
               🛒 Your Cart
@@ -150,7 +147,14 @@ const UserDashboard = () => {
                     {cartItems.map((img, i) => (
                       <div className="cart-item" key={i}>
                         <img src={img.url} alt="cart" />
-                        <button onClick={() => removeFromCart(img.asset_id)}>❌</button>
+                        <button onClick={() => removeFromCart(img.asset_id)} className="bin-btn" title="Remove">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                            <polyline points="3 6 5 6 21 6" />
+                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
+                            <path d="M10 11v6" />
+                            <path d="M14 11v6" />
+                          </svg>
+                        </button>
                       </div>
                     ))}
                     <button className="btn brown" onClick={handleRequestImages}>Request These</button>
@@ -160,9 +164,8 @@ const UserDashboard = () => {
             )}
           </div>
 
-          {/* Approved */}
           <div className="dropdown">
-            <button className="btn brown" onClick={() => setShowApprovedDropdown(!showApprovedDropdown)}>
+            <button className="btn blue cart-btn" onClick={() => setShowApprovedDropdown(!showApprovedDropdown)}>
               Approved
             </button>
             {showApprovedDropdown && (
@@ -217,7 +220,6 @@ const UserDashboard = () => {
             )}
           </div>
 
-          {/* Profile */}
           <div className="dropdown profile-dropdown">
             <button className="btn profile-icon" onClick={() => setShowProfileDropdown(!showProfileDropdown)} title="Profile">
               👤
@@ -237,7 +239,6 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      {/* Main */}
       <div className={`dashboard-main ${searchStarted ? 'shift-up' : ''}`}>
         <ImageSearch onSearchStart={() => setSearchStarted(true)} />
       </div>

@@ -1,25 +1,31 @@
 
 :root {
-  --first-color: #defcf9;
-  --second-color: #cadefc;
-  --third-color: #c3bef0;
-  --fourth-color: #cca8e9;
-  --text-dark: #2c3e50;
-  --text-light: #555;
+  --first-color: #f7f9fc;
+  --second-color: #eaf0f7;
+  --third-color: #dee6f0;
+  --fourth-color: #d1dcf0;
+  --text-dark: #2d2d2d;
+  --text-light: #666;
   --card-bg: #ffffff;
-  --hover-bg: #f1f1f1;
+  --hover-bg: #f1f3f6;
+  --primary-accent: #009087;
+  --button-blue: #009087;
+  --button-blue-text: #ffffff;
   --transition: 0.3s ease;
 }
 
 body.dark-mode {
-  --first-color: #1e1e2f;
-  --second-color: #2a2a3d;
-  --third-color: #3c3c57;
-  --fourth-color: #55557a;
-  --text-dark: #e0e0e0;
-  --text-light: #aaa;
-  --card-bg: #2a2a3d;
-  --hover-bg: #3b3b4f;
+  --first-color: #121212;
+  --second-color: #1f1f2e;
+  --third-color: #2a2a3d;
+  --fourth-color: #343454;
+  --text-dark: #eaeaea;
+  --text-light: #bbb;
+  --card-bg: #1f1f2e;
+  --hover-bg: #292940;
+  --primary-accent: #00b6a1;
+  --button-blue: #00b6a1;
+  --button-blue-text: #ffffff;
 }
 
 body, html, #root {
@@ -70,29 +76,40 @@ body, html, #root {
 .dropdown > button {
   padding: 10px 18px;
   border-radius: 24px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.92rem;
+  font-weight: 500;
   cursor: pointer;
   border: none;
-  transition: background-color var(--transition), transform 0.2s ease;
-  white-space: nowrap;
+  background-color: rgba(0, 144, 135, 0.08); /* light faint background */
+  color: var(--primary-accent);
+  transition: background-color var(--transition), transform 0.2s ease, color 0.3s;
+  box-shadow: none;
 }
 
-.btn.brown {
-  background-color: var(--third-color);
-  color: #fff;
-}
-.btn.brown:hover {
-  background-color: var(--fourth-color);
+.btn:hover,
+.dropdown > button:hover {
+  background-color: rgba(0, 144, 135, 0.15);
+  color: var(--primary-accent);
+  transform: translateY(-1px);
 }
 
-.btn.blue {
-  background-color: var(--fourth-color);
-  color: #fff;
+
+.profile-icon {
+  background: rgba(0, 144, 135, 0.1);
+  border: 2px solid transparent;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  color: var(--primary-accent);
+  transition: transform 0.3s ease, background-color var(--transition);
 }
-.btn.blue:hover {
-  background-color: var(--third-color);
+
+.profile-icon:hover {
+  background: rgba(0, 144, 135, 0.2);
+  transform: scale(1.05);
 }
+
 
 .cart-btn {
   position: relative;
@@ -131,35 +148,62 @@ body, html, #root {
   z-index: 1000;
 }
 
-.cart-item,
-.history-item {
+.cart-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 8px;
+  justify-content: space-between; /* pushes image and bin apart */
+  background: #ffffff;
+  padding: 10px 12px;
   border-radius: 10px;
   margin-bottom: 10px;
-  animation: fadeIn 0.3s ease-in-out;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  gap: 12px;
 }
 
-.cart-item {
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-.history-item {
-  background-color: var(--card-bg);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-
-.cart-item img,
-.history-item img {
+.cart-item img {
   width: 48px;
   height: 48px;
   object-fit: cover;
   border-radius: 8px;
   flex-shrink: 0;
 }
+
+.bin-btn {
+  margin-left: auto; /* pushes it to the end */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  padding: 6px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.bin-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: #d33;
+  transform: scale(1.05);
+}
+
+.btn.brown {
+  background-color: #e0dcdc;           /* light brown/gray */
+  color: #333;                         /* dark text for contrast */
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+}
+
+.btn.brown:hover {
+  background-color: #cfc7c7;           /* darker on hover */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 
 .history-item img {
   width: 60px;
@@ -191,18 +235,18 @@ body, html, #root {
 
 .profile-icon {
   background: linear-gradient(145deg, #f0f0f0, #dcdcdc);
-  border: 3px solid #3498db;
+  border: 3px solid var(--primary-accent);
   font-size: 1.4rem;
   cursor: pointer;
   padding: 10px;
   border-radius: 50%;
-  color: #333;
+  color: var(--text-dark);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
 }
 
 .profile-icon:hover {
-  background: #e0f3ff;
+  background: var(--hover-bg);
   transform: scale(1.05);
 }
 

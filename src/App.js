@@ -30,47 +30,47 @@ function AnimatedRoutes() {
   return (
 
     <>
-    
-    <AnimatePresence mode="wait">
-              
-        
-      <Routes location={location} key={location.pathname}>
-        {/* Public routes */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* Protected user routes */}
-        <Route
-          path="/user/dashboard"
-          element={
-            <RequireAuth>
-              <UserDashboard />
-            </RequireAuth>
-          }
-        />
+      <AnimatePresence mode="wait">
 
-        {/* Protected admin routes */}
-        <Route
-          path="/admin/dashboard"
-          element={
-            <RequireAdmin>
-              <AdminDashboard />
-            </RequireAdmin>
-          }
-        />
-        <Route
-          path="/admin/upload"
-          element={
-            <RequireAdmin>
-              <AdminUpload />
-            </RequireAdmin>
-          }
-        />
-      </Routes>
-    </AnimatePresence>
+
+        <Routes location={location} key={location.pathname}>
+          {/* Public routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* Protected user routes */}
+          <Route
+            path="/user/dashboard"
+            element={
+              <RequireAuth>
+                <UserDashboard />
+              </RequireAuth>
+            }
+          />
+
+          {/* Protected admin routes */}
+          <Route
+            path="/admin/dashboard"
+            element={
+              <RequireAdmin>
+                <AdminDashboard />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="/admin/upload"
+            element={
+              <RequireAdmin>
+                <AdminUpload />
+              </RequireAdmin>
+            }
+          />
+        </Routes>
+      </AnimatePresence>
     </>
   );
 }
@@ -79,8 +79,25 @@ function App() {
   return (
     <Router>
       <AnimatedRoutes />
-      <ToastContainer position="top-right" autoClose={3000} />
-    </Router>
+      <ToastContainer
+  position="top-center"
+  autoClose={1000}                     // 1 second
+  hideProgressBar
+  closeOnClick
+  pauseOnHover={false}
+  draggable={false}
+  pauseOnFocusLoss={false}
+  limit={3}
+  toastStyle={{
+    backgroundColor: '#e0e0e0',        // Faint gray
+    color: '#333',                     // Dark text
+    fontSize: '0.9rem',
+    borderRadius: '8px',
+    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)',
+    textAlign: 'center',
+  }}
+/>
+   </Router>
   );
 }
 
