@@ -1,0 +1,140 @@
+/* OverviewSection.css */
+
+.section {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-accent);
+  margin-bottom: 1rem;
+}
+
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-box {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.stat-box:hover {
+  transform: translateY(-4px);
+  background: var(--hover-bg);
+}
+
+.stat-box h5 {
+  margin: 0.5rem 0;
+  color: var(--text-dark);
+}
+
+.stat-box p {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--primary-accent);
+  margin: 0;
+}
+
+.stat-box small {
+  color: var(--text-light);
+  display: block;
+  margin-top: 0.25rem;
+}
+
+/* Chart Dropdowns & Button */
+select.form-select,
+button.btn {
+  background: var(--hover-bg);
+  color: var(--text-dark);
+  border: 1px solid var(--third-color);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+select.form-select:hover,
+button.btn:hover {
+  background: var(--third-color);
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+/* Tag Summary */
+.list-group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-group-item {
+  background: var(--second-color);
+  border: none;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.list-group-item:hover {
+  background: var(--third-color);
+}
+
+.badge {
+  font-size: 0.8rem;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-weight: 500;
+}
+
+.badge.bg-primary {
+  background-color: var(--primary-accent);
+  color: white;
+}
+
+.badge.bg-secondary {
+  background-color: var(--fourth-color);
+  color: var(--text-dark);
+}
+
+/* Recent Activity List */
+.recent-activity {
+  padding-left: 1rem;
+  list-style-type: circle;
+}
+
+.recent-activity li {
+  margin-bottom: 0.4rem;
+  color: var(--text-dark);
+  font-size: 0.9rem;
+}
+
+.text-muted {
+  color: var(--text-light);
+}
+
+.ms-2 {
+  margin-left: 0.5rem;
+}

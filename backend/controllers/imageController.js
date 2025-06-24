@@ -63,15 +63,15 @@ exports.searchImages = async (req, res) => {
 exports.updateImageTags = async (req, res) => {
   try {
     const { id } = req.params;
-    const tags = req.body.tags?.split(',').map(tag => tag.trim()) || [];
+    const tags = req.body.tags || [];
 
-    const image = await Image.findByIdAndUpdate(
-      id,
-      { tags },
-      { new: true }
-    );
-
+    const image = await Image.findById(id);
     if (!image) return res.status(404).json({ message: 'Image not found' });
+
+    // Merge tags without duplicates
+    const mergedTags = [...new Set([...(image.tags || []), ...tags])];
+    image.tags = mergedTags;
+    await image.save();
 
     res.json({ message: 'Tags updated successfully', image });
   } catch (err) {

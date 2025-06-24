@@ -1,0 +1,184 @@
+:root {
+  --navbar-bg-light: #ffffff;
+  --navbar-bg-dark: #1a1a1a;
+  --text-light: #1e1e1e;
+  --text-dark: #f5f5f5;
+  --highlight: #009087;
+  --highlight-dark: #00c2b2;
+  --primary-accent: #009087;
+  --transition-fast: 0.2s ease;
+  --transition-slow: 0.4s ease;
+}
+
+body {
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.admin-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--navbar-bg-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  z-index: 1000;
+  position: relative;
+  transition: background-color var(--transition-fast);
+  animation: fadeDown 0.5s ease;
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.dark-mode .admin-navbar {
+  background-color: var(--navbar-bg-dark);
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.brand {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-light);
+  transition: color var(--transition-fast);
+  animation: fadeIn 0.8s ease forwards;
+}
+
+body.dark-mode .brand {
+  color: var(--text-dark);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links button {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+
+body.dark-mode .nav-links button {
+  color: var(--text-dark);
+}
+
+.nav-links button:hover,
+.nav-links button.active {
+  color: var(--highlight);
+  transform: translateY(-2px);
+}
+
+.nav-links button.active {
+  border-bottom: 2px solid var(--primary-accent);
+}
+
+body.dark-mode .nav-links button.active {
+  color: var(--highlight-dark);
+  border-bottom: 2px solid var(--highlight-dark);
+}
+
+.nav-right {
+  position: relative;
+}
+
+.profile-icon {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-light);
+  transition: transform var(--transition-fast);
+}
+
+body.dark-mode .profile-icon {
+  color: var(--text-dark);
+}
+
+.profile-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  background: var(--navbar-bg-light);
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 160px;
+  z-index: 999;
+  display: none;
+  overflow: hidden;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body.dark-mode .profile-dropdown {
+  background: var(--navbar-bg-dark);
+}
+
+.profile-dropdown.open {
+  display: block;
+}
+
+.profile-dropdown p {
+  padding: 12px 16px;
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+body.dark-mode .profile-dropdown p {
+  color: var(--text-dark);
+}
+
+.profile-dropdown p:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+body.dark-mode .profile-dropdown p:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}

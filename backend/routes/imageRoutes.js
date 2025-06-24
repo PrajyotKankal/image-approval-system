@@ -4,6 +4,7 @@ const upload = require('../middleware/uploadMiddleware');
 const imageController = require('../controllers/imageController');
 const Image = require('../models/Image');
 
+
 const fs = require('fs');
 const path = require('path');
 const { authenticateAdmin } = require('../middleware/authMiddleware');
@@ -44,14 +45,39 @@ router.get('/search', async (req, res) => {
   
 });
 
+exports.updateImageTags = async (req, res) => {
+  const { id } = req.params;
+  const { tags } = req.body;
+
+  try {
+    const image = await Image.findById(id);
+    if (!image) return res.status(404).json({ message: 'Image not found' });
+
+    const newTags = Array.isArray(tags)
+      ? tags
+      : tags.split(',').map(tag => tag.trim()).filter(Boolean);
+
+    // Merge and remove duplicates
+    const mergedTags = Array.from(new Set([...(image.tags || []), ...newTags]));
+
+    image.tags = mergedTags;
+    await image.save();
+
+    res.status(200).json({ message: 'Tags updated', tags: image.tags });
+  } catch (error) {
+    console.error('Error updating tags:', error);
+    res.status(500).json({ message: 'Failed to update tags' });
+  }
+};
+
+
 
 
 
 // DELETE image route
-router.delete('/api/images/:id', protectAdmin, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const imageId = req.params.id;
-
     const image = await Image.findById(imageId);
     if (!image) {
       return res.status(404).json({ message: 'Image not found' });
@@ -69,5 +95,6 @@ router.delete('/api/images/:id', protectAdmin, async (req, res) => {
     res.status(500).json({ message: 'Failed to delete image' });
   }
 });
+
 
 module.exports = router;

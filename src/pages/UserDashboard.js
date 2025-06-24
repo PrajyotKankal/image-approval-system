@@ -132,109 +132,130 @@ const UserDashboard = () => {
     <div className="dashboard">
       <div className={`dashboard-header ${searchStarted ? 'pinned' : ''}`}>
         <div className="logo">Imagle</div>
-        <div className="header-actions">
-          <div className="dropdown">
-            <button className="btn blue cart-btn" onClick={() => setShowCartDropdown(!showCartDropdown)}>
-              🛒 Your Cart
-              {cartItems.length > 0 && <span className="cart-badge">{cartItems.length}</span>}
-            </button>
-            {showCartDropdown && (
-              <div className="dropdown-panel">
-                {cartItems.length === 0 ? (
-                  <p className="empty-msg">Cart is empty.</p>
-                ) : (
-                  <>
-                    {cartItems.map((img, i) => (
-                      <div className="cart-item" key={i}>
-                        <img src={img.url} alt="cart" />
-                        <button onClick={() => removeFromCart(img.asset_id)} className="bin-btn" title="Remove">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
-                            <polyline points="3 6 5 6 21 6" />
-                            <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
-                            <path d="M10 11v6" />
-                            <path d="M14 11v6" />
-                          </svg>
-                        </button>
-                      </div>
-                    ))}
-                    <button className="btn brown" onClick={handleRequestImages}>Request These</button>
-                  </>
-                )}
-              </div>
-            )}
-          </div>
 
-          <div className="dropdown">
-            <button className="btn blue cart-btn" onClick={() => setShowApprovedDropdown(!showApprovedDropdown)}>
-              Approved
-            </button>
-            {showApprovedDropdown && (
-              <div className="dropdown-panel">
-                {approvedImages.length === 0 ? (
-                  <p className="empty-msg">No approved images.</p>
-                ) : (
-                  <>
-                    {!downloadedOnce ? (
-                      <div className="d-flex justify-between mb">
-                        <button className="btn gray" onClick={downloadAllAsZip}>Download All</button>
-                      </div>
-                    ) : (
-                      <p className="empty-msg" style={{ fontStyle: 'italic', color: '#999' }}>
-                        These files have already been downloaded. View history below.
-                      </p>
-                    )}
+        <div className="header-right-wrapper">
+          <div className="header-actions">
+            {/* Cart Dropdown */}
+            <div className="dropdown">
+              <button className="btn blue cart-btn" onClick={() => setShowCartDropdown(!showCartDropdown)}>
+                🛒 Your Cart
+                {cartItems.length > 0 && <span className="cart-badge">{cartItems.length}</span>}
+              </button>
+              {showCartDropdown && (
+                <div className="dropdown-panel">
+                  {cartItems.length === 0 ? (
+                    <p className="empty-msg">Cart is empty.</p>
+                  ) : (
+                    <>
+                      {cartItems.map((img, i) => (
+  <div className="cart-item" key={i}>
+    <img src={img.url} alt="cart" />
+    <button className="remove-btn" onClick={() => removeFromCart(img.asset_id)}>🗑️</button>
+  </div>
+))}
 
-                    {newApproved.length > 0 && (
-                      <>
-                        <p className="section-label">🆕 New Approved</p>
-                        {newApproved.map((img, i) => (
-                          <div className="cart-item" key={i}>
-                            <img src={`${API_BASE}${img.path}`} alt="approved" />
-                          </div>
-                        ))}
-                      </>
-                    )}
+                      <button className="btn brown" onClick={handleRequestImages}>Request These</button>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
 
-                    {historyApproved.length > 0 && (
-                      <>
-                        <p className="section-label" style={{ color: '#888' }}>📁 Download History</p>
-                        {historyApproved.map((img, i) => {
-                          const meta = downloadedMeta.find(entry => entry.id === (img._id || img.asset_id));
-                          return (
-                            <div className="cart-item history-item" key={i}>
-                              <img src={`${API_BASE}${img.path}`} alt={img.filename || 'downloaded'} />
-                              <div className="info-block">
-                                <p className="history-filename">{img.filename}</p>
-                                <p className="history-date">
-                                  📅 {meta?.date ? new Date(meta.date).toLocaleString() : 'Unknown'}
-                                </p>
-                              </div>
+            {/* Approved Dropdown */}
+            <div className="dropdown">
+              <button className="btn brown" onClick={() => setShowApprovedDropdown(!showApprovedDropdown)}>
+                Approved
+              </button>
+              {showApprovedDropdown && (
+                <div className="dropdown-panel">
+                  {approvedImages.length === 0 ? (
+                    <p className="empty-msg">No approved images.</p>
+                  ) : (
+                    <>
+                      {!downloadedOnce ? (
+                        <div className="d-flex justify-between mb">
+                          <button className="btn gray" onClick={downloadAllAsZip}>Download All</button>
+                        </div>
+                      ) : (
+                        <p className="empty-msg" style={{ fontStyle: 'italic', color: '#999' }}>
+                          These files have already been downloaded. View history below.
+                        </p>
+                      )}
+
+                      {newApproved.length > 0 && (
+                        <>
+                          <p className="section-label">🆕 New Approved</p>
+                          {newApproved.map((img, i) => (
+                            <div className="cart-item" key={i}>
+                              <img src={`${API_BASE}${img.path}`} alt="approved" />
                             </div>
-                          );
-                        })}
-                      </>
-                    )}
-                  </>
-                )}
-              </div>
-            )}
-          </div>
+                          ))}
+                        </>
+                      )}
 
-          <div className="dropdown profile-dropdown">
-            <button className="btn profile-icon" onClick={() => setShowProfileDropdown(!showProfileDropdown)} title="Profile">
-              👤
-            </button>
-            {showProfileDropdown && (
-              <div className="dropdown-panel profile-menu">
-                {userRole === 'admin' && (
-                  <p className="dropdown-item" onClick={() => navigate('/admin/dashboard')}>🛠️ Admin Tools</p>
-                )}
-                <button className="dropdown-item" onClick={() => document.querySelector('.dark-toggle')?.click()}>
+                      {historyApproved.length > 0 && (
+                        <>
+                          <p className="section-label" style={{ color: '#888' }}>📁 Download History</p>
+                          {historyApproved.map((img, i) => {
+                            const meta = downloadedMeta.find(entry => entry.id === (img._id || img.asset_id));
+                            return (
+                              <div className="cart-item history-item" key={i}>
+                                <img src={`${API_BASE}${img.path}`} alt={img.filename || 'downloaded'} />
+                                <div className="info-block">
+                                  <p className="history-filename">{img.filename}</p>
+                                  <p className="history-date">📅 {meta?.date ? new Date(meta.date).toLocaleString() : 'Unknown'}</p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+
+            {/* Profile Dropdown */}
+            <div className="dropdown">
+              <button
+                className="btn profile-icon"
+                onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                title="Profile"
+              >
+                👤
+              </button>
+
+              {showProfileDropdown && (
+                <div className="dropdown-panel profile-menu">
+                  {userRole === 'admin' && (
+                    <button
+                      className="dropdown-item"
+                      onClick={() => {
+                        setShowProfileDropdown(false);
+                        navigate('/admin/dashboard');
+                      }}
+                    >
+                      🛠️ Admin Tools
+                    </button>
+                  )}
+
                   <DarkModeToggle />
-                </button>
-                <button className="dropdown-item" onClick={handleLogout}>🚪 Logout</button>
-              </div>
-            )}
+
+                  <button
+                    className="dropdown-item"
+                    onClick={() => {
+                      setShowProfileDropdown(false);
+                      handleLogout();
+                    }}
+                  >
+                    🚪 Logout
+                  </button>
+                </div>
+              )}
+            </div>
+
+
           </div>
         </div>
       </div>
