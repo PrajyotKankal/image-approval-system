@@ -1,6 +1,6 @@
 # Imagle
 
-Imagle is a full-stack web application designed for secure internal image access management. It enables users to search, request, and download images after approval, while providing admins with tools to manage uploads, review requests, and oversee system analytics. demo
+Imagle is a full-stack web application designed for secure internal image access management. It enables users to search, request, and download images after approval, while providing admins with tools to manage uploads, review requests, and oversee system analytics. 
 
 ---
 
