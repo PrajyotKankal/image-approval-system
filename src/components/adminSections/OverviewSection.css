@@ -1,34 +1,52 @@
-/* OverviewSection.css */
-
-.section {
-  background: var(--card-bg);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  transition: var(--transition);
+/* === ROOT THEME COLORS === */
+:root {
+  --bg-color: #ffffff;
+  --card-bg: #f9fbfd;
+  --hover-bg: #e6eef4;
+  --primary-accent: #009087;
+  --text-dark: #1a1a1a;
+  --text-light: #6c757d;
+  --second-color: #dde6f0;
+  --third-color: #c5d4e9;
+  --fourth-color: #b1c9e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease;
 }
 
-.section-subtitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--primary-accent);
-  margin-bottom: 1rem;
+body.dark-mode {
+  --bg-color: #1c1d26;
+  --card-bg: #282a3a;
+  --hover-bg: #36394c;
+  --text-dark: #f5f5f5;
+  --text-light: #b0b0b0;
+  --second-color: #36394c;
+  --third-color: #484c66;
+  --fourth-color: #5a5d7c;
 }
 
+/* === CONTAINER === */
+.container-fluid {
+  padding: 2rem;
+  background: var(--bg-color);
+  color: var(--text-dark);
+}
+
+/* === STATS CARDS === */
 .stats-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
 }
 
 .stat-box {
   background: var(--card-bg);
   padding: 1rem;
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   text-align: center;
-  transition: transform 0.3s ease;
+  transition: var(--transition);
+  position: relative;
 }
 
 .stat-box:hover {
@@ -36,50 +54,108 @@
   background: var(--hover-bg);
 }
 
+.stat-box i {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-accent);
+}
+
 .stat-box h5 {
-  margin: 0.5rem 0;
-  color: var(--text-dark);
+  font-size: 0.95rem;
+  margin: 0.2rem 0;
 }
 
 .stat-box p {
-  font-size: 1.6rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: var(--primary-accent);
   margin: 0;
 }
 
 .stat-box small {
+  font-size: 0.7rem;
   color: var(--text-light);
-  display: block;
-  margin-top: 0.25rem;
 }
 
-/* Chart Dropdowns & Button */
-select.form-select,
-button.btn {
-  background: var(--hover-bg);
-  color: var(--text-dark);
-  border: 1px solid var(--third-color);
-  border-radius: 8px;
-  padding: 0.5rem 0.75rem;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-select.form-select:hover,
-button.btn:hover {
-  background: var(--third-color);
-}
-
-.card {
+/* === SECTION BLOCKS === */
+.section {
   background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+  height: 100%;
+  transition: var(--transition);
+  font-size: 0.88rem;
 }
 
-/* Tag Summary */
+.section-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-accent);
+  margin-bottom: 0.8rem;
+}
+
+/* === RECENT ACTIVITY === */
+.recent-activity {
+  padding-left: 1rem;
+  list-style-type: disc;
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.recent-activity::-webkit-scrollbar {
+  width: 6px;
+}
+
+.recent-activity::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 10px;
+}
+
+.recent-activity li {
+  margin-bottom: 0.5rem;
+}
+
+/* === CHART & TAGS ROW === */
+.chart-tag-row {
+  display: grid;
+  grid-template-columns: 8fr 4fr; /* Give more space to chart */
+  gap: 1.5rem;
+  align-items: start;
+  margin-top: 2rem;
+}
+
+/* === TAG BOX === */
+.tag-box {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.2rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  height: 420px;
+  width: 100%;
+  font-size: 0.85rem;
+}
+
+.tag-box .tag-summary-scroll {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.tag-summary-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tag-summary-scroll::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 10px;
+}
+
+/* === LIST GROUP === */
 .list-group {
   list-style: none;
   padding: 0;
@@ -89,9 +165,9 @@ button.btn:hover {
 .list-group-item {
   background: var(--second-color);
   border: none;
-  margin-bottom: 0.5rem;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
+  margin-bottom: 0.4rem;
+  border-radius: 10px;
+  padding: 0.5rem 0.9rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,11 +178,12 @@ button.btn:hover {
   background: var(--third-color);
 }
 
+/* === BADGES === */
 .badge {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   border-radius: 20px;
   padding: 4px 10px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .badge.bg-primary {
@@ -119,22 +196,63 @@ button.btn:hover {
   color: var(--text-dark);
 }
 
-/* Recent Activity List */
-.recent-activity {
-  padding-left: 1rem;
-  list-style-type: circle;
+/* === CHART BOX === */
+.chart-box {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  min-height: 410px;
+ 
 }
 
-.recent-activity li {
-  margin-bottom: 0.4rem;
+.chart-box {
+  width: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+
+.chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+.chart-controls select,
+.chart-controls button {
+  font-size: 0.8rem;
+  border-radius: 6px;
+  padding: 0.4rem 0.75rem;
+  outline: none;
+  border: 1px solid var(--third-color);
+  background: var(--bg-color);
   color: var(--text-dark);
-  font-size: 0.9rem;
+  transition: var(--transition);
 }
 
-.text-muted {
-  color: var(--text-light);
+.chart-controls button:hover {
+  background-color: var(--primary-accent);
+  color: #fff;
 }
 
-.ms-2 {
-  margin-left: 0.5rem;
+.chart-card {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 250px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .chart-tag-row {
+    grid-template-columns: 1fr;
+  }
 }

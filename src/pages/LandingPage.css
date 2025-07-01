@@ -1,81 +1,119 @@
+/* Ensure full width alignment and responsiveness */
 .landing-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   padding: 2rem;
+  background: linear-gradient(to bottom right, #e9f5f7, #f7f9fc);
   text-align: center;
-  background-color: #f7f9fc; /* fallback if image fails */
   background-size: cover;
-  background-position: bottom center;
-  background-repeat: no-repeat;
+  background-position: center;
 }
 
+/* Slightly more elevation and better fluid layout */
 .hero-center-section {
-  max-width: 700px;
-  background: rgba(255, 255, 255, 0.85);
+  max-width: 720px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
   padding: 3rem 2rem;
-  border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(14px);
   transition: transform 0.3s ease;
 }
 
-.hero-center-section:hover {
-  transform: scale(1.01);
+.landing-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle at center, #c9f0f0 0%, transparent 70%);
+  z-index: 0;
 }
 
+
+
+
 .hero-title {
-  font-size: 2.6rem;
-  font-weight: 600;
-  color: #009087; /* Ensure strong contrast */
-  margin-bottom: 1rem;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #009087;
+  margin-bottom: 1.2rem;
 }
 
 .hero-subtext {
-  font-size: 1.1rem;
-  color: #333; /* darker for better readability */
-  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: #2d2d2d;
+  margin-bottom: 0.8rem;
 }
 
 .tagline {
-  font-size: 0.95rem;
-  color: #666; /* better than #888 on bright backgrounds */
+  font-size: 1rem;
+  color: #555;
   margin-bottom: 2rem;
 }
 
+.cta-container {
+  display: flex;
+  justify-content: center;
+}
 
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 
+/* Buttons */
 .button2 {
-  display: inline-block;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  color: #1a1a1a;
-  padding: 0.7em 1.6em;
-  margin: 0 0.6rem;
-  font-size: 16px;
+  padding: 0.7em 1.8em;
+  font-size: 1rem;
   font-weight: 600;
-  border-radius: 0.6em;
-  background: #f2f2f2;
-  border: 1px solid #ddd;
-  box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+  border-radius: 10px;
+  border: none;
+  background: #f3f3f3;
+  color: #1a1a1a;
   cursor: pointer;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08), -3px -3px 8px #fff;
   transition: all 0.3s ease;
 }
 
 .button2:hover {
+  background: #009087;
+  color: white;
+  box-shadow: 0 0 14px #009087;
+}
+
+.button2.light {
+  background: #ffffff;
+  border: 1px solid #ccc;
+}
+
+.button2.light:hover {
+  background: #009087;
   color: #fff;
-  background: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  box-shadow: 0 0 10px var(--primary-color);
+  border-color: #009087;
 }
 
-.button2:active {
-  transform: scale(0.97);
-}
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
 
-.button2:before,
-.button2:after {
-  display: none; /* Remove the radial wave effect for cleaner aesthetic */
+  .hero-subtext {
+    font-size: 1rem;
+  }
+
+  .cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button2 {
+    width: 100%;
+    max-width: 300px;
+  }
 }

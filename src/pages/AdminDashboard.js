@@ -43,7 +43,8 @@ const API_BASE = 'http://localhost:5000';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem('admin-token');
+  const token = localStorage.getItem('token');
+
 
   // State
   const [active, setActive] = useState('requests');
@@ -121,21 +122,21 @@ const AdminDashboard = () => {
   };
 
 
-const handleDeleteUser = async (userId) => {
-  try {
-    const token = localStorage.getItem('token');
-    await axios.delete(`http://localhost:5000/api/users/${userId}`, {
-      headers: {
-        Authorization: token
-      }
-    });
-    toast.success('User deleted');
-    // Refresh the analytics after delete (optional):
-    fetchAnalytics();
-  } catch (error) {
-    toast.error(error.response?.data?.message || 'Delete failed');
-  }
-};
+  const handleDeleteUser = async (userId) => {
+    try {
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:5000/api/users/${userId}`, {
+        headers: {
+          Authorization: token
+        }
+      });
+      toast.success('User deleted');
+      // Refresh the analytics after delete (optional):
+      fetchAnalytics();
+    } catch (error) {
+      toast.error(error.response?.data?.message || 'Delete failed');
+    }
+  };
 
 
 
@@ -238,7 +239,11 @@ const handleDeleteUser = async (userId) => {
         )}
 
         {active === 'requests' && (
-          <RequestsSection requests={requests} handleAction={handleAction} />
+          <RequestsSection
+            requests={requests}
+            onApprove={(id) => handleAction(id, 'approved')}
+            onReject={(id) => handleAction(id, 'rejected')}
+          />
         )}
 
         {active === 'insights' && (

@@ -124,9 +124,25 @@ const Signup = () => {
             onChange={handleChange}
             required
           />
-          <span onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? '🙈' : '👁️'}
-          </span>
+          <span onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
+  {showPassword ? (
+    // Eye Slash Icon (Hide Password)
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17.94 17.94L6.06 6.06" />
+      <path d="M10.58 10.58a3 3 0 0 0 4.24 4.24" />
+      <path d="M9.88 4.12a10.94 10.94 0 0 1 10.09 6.88" />
+      <path d="M1 1l22 22" />
+      <path d="M3.5 3.5C2 5 1 7 1 7s4 7 11 7c1.5 0 3-.25 4.5-.75" />
+    </svg>
+  ) : (
+    // Eye Icon (Show Password)
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  )}
+</span>
+
         </div>
 
         <button type="submit" disabled={!otpVerified}>

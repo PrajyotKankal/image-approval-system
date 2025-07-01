@@ -4,6 +4,8 @@ const Request = require('../models/requestModel');
 const ExcelJS = require('exceljs');
 const fs = require('fs');
 const path = require('path');
+const { protectAdmin } = require('../middleware/authMiddleware');
+
 
 
 
@@ -38,7 +40,8 @@ router.get('/', async (req, res) => {
 });
 
 // PUT: Approve or reject a request
-router.put('/:id', async (req, res) => {
+  router.put('/:id', protectAdmin, async (req, res) => {
+
   const { status } = req.body;
 
   const approvedBy = req.user?.username || req.body.approvedBy || 'Unknown';
@@ -70,6 +73,7 @@ router.get('/export', async (req, res) => {
 
     // Header row
     worksheet.addRow(['Approved For (User)', 'Approved Image(s)',  'Approval Date']);
+    
 
     approvedRequests.forEach(req => {
       const imageNames = req.images.map(img => img.filename).join(', ');

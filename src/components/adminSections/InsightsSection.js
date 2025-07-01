@@ -22,7 +22,7 @@ const InsightsSection = ({
 
   return (
     <div className="insights-wrapper">
-      <h2 className="insights-title">📊 Insights</h2>
+      <h2 className="insights-title">Insights</h2>
 
       <div className="insights-grid">
         {/* Users */}

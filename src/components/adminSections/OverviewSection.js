@@ -3,7 +3,6 @@ import React from 'react';
 import { Line, Bar } from 'react-chartjs-2';
 import './OverviewSection.css';
 
-
 const OverviewSection = ({
   requests,
   uploadedImages,
@@ -87,7 +86,7 @@ const OverviewSection = ({
 
   return (
     <div className="container-fluid animate__animated animate__fadeIn">
-      {/* Stats */}
+      {/* Stats Section */}
       <div className="stats-cards mb-4">
         {stats.map((item, idx) => (
           <div className={`stat-box ${item.color}`} key={idx}>
@@ -99,7 +98,7 @@ const OverviewSection = ({
         ))}
       </div>
 
-      {/* Summary */}
+      {/* Summary Row */}
       <div className="row g-4">
         <div className="col-md-6">
           <div className="section">
@@ -129,28 +128,31 @@ const OverviewSection = ({
         </div>
       </div>
 
-      {/* Chart and Tag Summary */}
-      <div className="row mt-4">
-        <div className="col-md-6 mb-3">
-          <div className="section h-100">
-            <h6 className="section-subtitle">🏷️ Tag Usage Summary</h6>
-            {sortedTags.length === 0 ? (
-              <p className="text-muted">No tags found in uploaded images.</p>
-            ) : (
-              <ul className="list-group">
-                {sortedTags.map(([tag, count], i) => (
-                  <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
-                    <span className="badge bg-primary px-3 py-2 text-uppercase">{tag}</span>
-                    <span className="badge bg-secondary">{count} image{count > 1 ? 's' : ''}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
+      {/* Tag & Chart Row */}
+      <div className="chart-tag-row">
+        {/* Tag Summary */}
+        <div className="tag-box">
+  <h6 className="section-subtitle">🏷️ Tag Usage Summary</h6>
+  {sortedTags.length === 0 ? (
+    <p className="text-muted">No tags found in uploaded images.</p>
+  ) : (
+    <div className="tag-summary-scroll"> {/* ✅ Add this wrapper */}
+      <ul className="list-group">
+        {sortedTags.map(([tag, count], i) => (
+          <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
+            <span className="badge bg-primary px-3 py-2 text-uppercase">{tag}</span>
+            <span className="badge bg-secondary">{count} image{count > 1 ? 's' : ''}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</div>
 
-        <div className="col-md-6 mb-3">
-          <div className="d-flex gap-2 justify-content-end mb-3">
+
+        {/* Chart Section */}
+        <div className="chart-box">
+          <div className="chart-controls">
             <select className="form-select w-auto" value={chartType} onChange={(e) => setChartType(e.target.value)}>
               <option value="line">📈 Line Chart</option>
               <option value="bar">📊 Bar Chart</option>
@@ -163,9 +165,10 @@ const OverviewSection = ({
               📥 Download Excel Report
             </button>
           </div>
-          <div className="card border-0 shadow-sm p-3 h-100">
-            <ChartComponent data={chartData} options={chartOptions} />
-          </div>
+          <div className="card border-0 shadow-sm p-3 chart-card">
+  <ChartComponent data={chartData} options={chartOptions} />
+</div>
+
         </div>
       </div>
     </div>

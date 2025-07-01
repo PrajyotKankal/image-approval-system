@@ -1,53 +1,84 @@
 .requests-section {
   padding: 2rem;
   max-width: 100%;
+  background: transparent;
+  color: var(--text-dark);
 }
 
+/* Headings */
 h3, h5 {
   margin-bottom: 1rem;
   font-weight: 600;
-  color: #1a1a1a;
+  color: var(--text-dark);
 }
 
 .handled-header {
   margin-top: 2rem;
 }
 
+/* Grid Layout */
 .request-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
+  align-items: start;
 }
 
+/* Card Styling */
 .request-card {
-  background: #fff;
+  background: var(--card-bg);
   border-radius: 12px;
   padding: 1rem;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-  transition: 0.3s ease;
+  box-shadow: 0 4px 12px var(--card-shadow);
+  transition: var(--transition);
   overflow: hidden;
 }
 
+/* 🌫️ Handled Fade Effect */
+.request-card.handled {
+  opacity: 0.65;
+  filter: grayscale(40%) blur(0.3px);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+/* Dropdown Header */
 .dropdown-header {
   font-weight: 500;
   cursor: pointer;
   padding: 0.5rem;
-  background-color: #f6f9fc;
+  background-color: var(--input-bg);
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--text-dark);
 }
 
+
+.text-muted {
+  color: var(--text-light);
+  font-style: italic;
+  font-size: 0.85rem;
+}
+
+/* Dropdown arrow */
 .arrow {
   font-size: 0.9rem;
   margin-left: 10px;
 }
 
-.dropdown-body {
-  margin-top: 1rem;
+/* Dropdown content */
+.request-card.open .dropdown-body {
+  display: block;
 }
 
+.dropdown-body {
+  display: none;
+  margin-top: 1rem;
+  transition: var(--transition);
+}
+
+/* Image previews */
 .request-images {
   display: flex;
   flex-wrap: wrap;
@@ -60,9 +91,10 @@ h3, h5 {
   height: 70px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
 }
 
+/* Buttons */
 .btn-group {
   display: flex;
   gap: 0.75rem;
@@ -77,34 +109,35 @@ h3, h5 {
   font-weight: 500;
   cursor: pointer;
   font-size: 0.9rem;
-  transition: 0.3s ease;
+  transition: var(--transition);
+  color: #fff;
 }
 
+/* Gray Themed Buttons */
 .btn-approve {
-  background-color: #16a34a;
-  color: white;
+  background-color: #6b7280;
+}
+.btn-approve:hover {
+  background-color: #4b5563;
 }
 
 .btn-reject {
-  background-color: #ef4444;
-  color: white;
+  background-color: #9ca3af;
+  color: #1f2937;
 }
-
-.btn-approve:hover {
-  background-color: #15803d;
-}
-
 .btn-reject:hover {
-  background-color: #dc2626;
+  background-color: #6b7280;
+  color: #fff;
 }
 
+/* Status Badges */
 .badge {
   padding: 2px 10px;
   border-radius: 20px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #fff;
   text-transform: capitalize;
+  color: #fff;
 }
 
 .badge-pending {
@@ -120,54 +153,58 @@ h3, h5 {
   background-color: #ef4444;
 }
 
+/* Faint message */
 .faint {
-  color: #777;
+  color: var(--text-light);
   padding: 1rem;
   font-style: italic;
 }
 
-/* Improve responsiveness of request grid */
-.request-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-  align-items: start;
-}
-
-/* Dropdown card fix */
-.request-card.open .dropdown-body {
-  display: block;
-}
-.dropdown-body {
-  display: none;
-  transition: all 0.3s ease;
-}
-
-/* Dark mode support */
+/* 🌙 Dark Mode */
 body.dark-mode .request-card {
-  background: #1f2937;
-  color: #f3f4f6;
-  box-shadow: 0 4px 12px rgba(255,255,255,0.08);
+  background: var(--card-bg);
+  color: var(--text-dark);
+  box-shadow: 0 4px 12px var(--card-shadow);
 }
+
 body.dark-mode .dropdown-header {
-  background-color: #374151;
+  background-color: var(--input-bg);
+  color: var(--text-dark);
 }
+
 body.dark-mode .request-img {
   border-color: #444;
 }
+
 body.dark-mode .btn-approve {
-  background-color: #10b981;
+  background-color: #4b5563;
 }
+body.dark-mode .btn-approve:hover {
+  background-color: #374151;
+}
+
 body.dark-mode .btn-reject {
-  background-color: #ef4444;
+  background-color: #6b7280;
+  color: #fff;
 }
+body.dark-mode .btn-reject:hover {
+  background-color: #4b5563;
+}
+
 body.dark-mode .badge-pending {
   background-color: #eab308;
-  color: #1f2937;
+  color: #1a1a1a;
 }
+
 body.dark-mode .badge-approved {
   background-color: #22c55e;
 }
+
 body.dark-mode .badge-rejected {
   background-color: #dc2626;
+}
+
+body.dark-mode .request-card.handled {
+  opacity: 0.55;
+  filter: grayscale(50%) blur(0.5px);
 }

@@ -39,6 +39,8 @@
   font-size: 15px;
   background-color: #fafafa;
   transition: border-color 0.2s ease;
+  box-sizing: border-box;
+  display: block;
 }
 
 .form-control:focus {
@@ -58,7 +60,9 @@
   border-radius: 12px;
   transition: background-color 0.3s ease;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  display: block;
 }
 
 .login-btn:hover {
