@@ -1,0 +1,248 @@
+/* Root container */
+.request-detail {
+  padding: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: var(--first-color, #f8fafc);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.4s ease;
+}
+
+/* Heading */
+.request-detail h2 {
+  font-size: 2.2rem;
+  color: var(--primary-accent, #009087);
+  text-align: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.5rem;
+}
+
+/* Details text */
+.detail-info p {
+  font-size: 1.1rem;
+  margin: 0.8rem 0;
+  color: #2d2d2d;
+}
+
+.detail-info strong {
+  color: #1e293b;
+}
+
+/* Image list styles */
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.preview-image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.preview-image:hover {
+  transform: scale(1.05);
+}
+
+/* Action buttons */
+.action-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.approve-btn,
+.reject-btn {
+  padding: 0.75rem 1.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.approve-btn {
+  background-color: #16a34a;
+}
+
+.approve-btn:hover {
+  background-color: #15803d;
+}
+
+.reject-btn {
+  background-color: #dc2626;
+}
+
+.reject-btn:hover {
+  background-color: #b91c1c;
+}
+
+/* Request history */
+.request-history {
+  margin-top: 3rem;
+  background: #f1f5f9;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.request-history h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: #0f172a;
+}
+
+/* History table */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.history-table th,
+.history-table td {
+  border: 1px solid #cbd5e1;
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+.history-table th {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+.history-table td ul {
+  list-style: none;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.history-table tr:hover {
+  background-color: #f8fafc;
+}
+
+/* Loading & error messages */
+.loading,
+.error {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #475569;
+  padding: 3rem 0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .image-list {
+    justify-content: center;
+  }
+
+  .preview-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Dark mode overrides */
+/* Apply high contrast to the values next to <strong> in dark mode */
+body.dark-mode .request-detail p {
+  color: #cbd5e1;
+}
+
+body.dark-mode .request-detail strong {
+  color: #f1f5f9;
+}
+
+body.dark-mode .request-detail h2 {
+  color: #00d1b2;
+  border-bottom: 1px solid #444;
+}
+
+body.dark-mode .detail-info strong {
+  color: #cbd5e1;
+}
+
+body.dark-mode .preview-image {
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .action-buttons button {
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .approve-btn {
+  background-color: #059669;
+}
+
+body.dark-mode .approve-btn:hover {
+  background-color: #047857;
+}
+
+body.dark-mode .reject-btn {
+  background-color: #ef4444;
+}
+
+body.dark-mode .reject-btn:hover {
+  background-color: #dc2626;
+}
+
+/* History section */
+body.dark-mode .request-history {
+  background: #2c2c40;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .request-history h3 {
+  color: #f1f5f9;
+}
+
+body.dark-mode .history-table th {
+  background-color: #3b3b4f;
+  color: #e2e8f0;
+  border-color: #4b5563;
+}
+
+body.dark-mode .history-table td {
+  border-color: #4b5563;
+  color: #d1d5db;
+}
+
+body.dark-mode .history-table tr:hover {
+  background-color: #374151;
+}
+
+/* Loading & error messages in dark mode */
+body.dark-mode .loading,
+body.dark-mode .error {
+  color: #94a3b8;
+}

@@ -1,6 +1,7 @@
 // src/pages/AdminDashboard.js
 import React, { useEffect, useState, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom'; // ✅ Add useLocation
+
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -63,6 +64,15 @@ const AdminDashboard = () => {
   const [showUsers, setShowUsers] = useState(false);
   const [showAdmins, setShowAdmins] = useState(false);
 
+  const location = useLocation();
+const section = location.state?.section;
+
+useEffect(() => {
+  if (section) {
+    setActive(section); // ✅ Load section from URL
+  }
+}, [section]);
+
   // API Calls
   const fetchRequests = async () => {
     try {
@@ -122,21 +132,20 @@ const AdminDashboard = () => {
   };
 
 
-  const handleDeleteUser = async (userId) => {
-    try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/users/${userId}`, {
-        headers: {
-          Authorization: token
-        }
-      });
-      toast.success('User deleted');
-      // Refresh the analytics after delete (optional):
-      fetchAnalytics();
-    } catch (error) {
-      toast.error(error.response?.data?.message || 'Delete failed');
-    }
-  };
+const handleDeleteUser = async (userId) => {
+  try {
+    const token = localStorage.getItem('token');
+    await axios.delete(`http://localhost:5000/api/users/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    // Optionally refresh user list here
+  } catch (err) {
+    console.error("Failed to delete user:", err);
+    alert("Unauthorized or token missing");
+  }
+};
 
 
 

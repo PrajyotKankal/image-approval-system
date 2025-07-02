@@ -1,0 +1,74 @@
+.request-row {
+  transition: background 0.3s ease;
+}
+
+.request-row:hover {
+  background-color: #f9f9f9;
+}
+
+/* Add spacing inside each cell */
+.request-row td {
+  padding: 12px 20px; /* Top/Bottom: 12px, Left/Right: 20px */
+  text-align: left;
+  vertical-align: middle;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Pill style for status */
+.status-pill {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+  text-transform: capitalize;
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+/* Dynamic status colors */
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.status-approved {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-rejected {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* View button */
+.view-btn {
+  padding: 6px 14px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-btn:hover {
+  background-color: #2563eb;
+}
+
+/* Responsive: shrink padding on mobile */
+@media (max-width: 768px) {
+  .request-row td {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .view-btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}

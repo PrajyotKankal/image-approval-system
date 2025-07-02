@@ -1,94 +1,113 @@
 // src/components/adminSections/RequestsSection.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import RequestRow from './requestSectionComponents/RequestRow';
+import './requestSectionComponents/RequestsTable.css';
 import './RequestsSection.css';
+import Spinner from './Spinner';
 
-const API_BASE = 'http://localhost:5000'; // Replace with your backend base URL
+const RequestsSection = () => {
+  const [pendingRequests, setPendingRequests] = useState([]);
+  const [handledRequests, setHandledRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-const RequestsSection = ({ requests, onApprove, onReject }) => {
-  const [expandedId, setExpandedId] = useState(null);
+  const fetchRequests = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const res = await axios.get('http://localhost:5000/api/requests', {
+        headers: {
+          Authorization: token,
+        },
+      });
 
-  const toggleDropdown = (id) => {
-    setExpandedId(prev => (prev === id ? null : id));
+      const allRequests = res.data;
+
+      // ✅ Sort both pending and handled by createdAt (newest first)
+      const sortedPending = allRequests
+        .filter((r) => r.status === 'pending')
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      const sortedHandled = allRequests
+        .filter((r) => r.status !== 'pending')
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      setPendingRequests(sortedPending);
+      setHandledRequests(sortedHandled);
+
+      setLoading(false);
+    } catch (err) {
+      setError('Failed to fetch requests');
+      console.error(err);
+      setLoading(false);
+    }
   };
 
-  const renderRequestCard = (req) => {
-    const isExpanded = expandedId === req._id;
-    const isHandled = req.status !== 'pending';
-
-    return (
-      <div
-        key={req._id}
-        className={`request-card ${isExpanded ? 'open' : ''} ${isHandled ? 'handled' : ''}`}
-      >
-        <div className="dropdown-header" onClick={() => toggleDropdown(req._id)}>
-          <span className="user-icon">👤</span>
-          {req.userEmail}
-          <span className="arrow">{isExpanded ? '▲' : '▼'}</span>
-        </div>
-
-        <div className="dropdown-body">
-  <p>
-    <strong>Status:</strong>{' '}
-    <span className={`badge badge-${req.status}`}>{req.status}</span>
-  </p>
-
-  <p>
-    <strong>Requested on:</strong>{' '}
-    {new Date(req.requestedAt).toLocaleString()}
-  </p>
-
- 
-
-  <div className="request-images">
-    {req.images.map((img, i) => (
-      <img
-        key={i}
-        src={`${API_BASE}${img.path}`}
-        alt={img.filename}
-        className="request-img"
-      />
-    ))}
-  </div>
-
-  {req.status === 'pending' && (
-    <div className="btn-group">
-      <button className="btn-approve" onClick={() => onApprove(req._id)}>
-        Approve
-      </button>
-      <button className="btn-reject" onClick={() => onReject(req._id)}>
-        Reject
-      </button>
-    </div>
-  )}
-</div>
-
-      </div>
-    );
-  };
-
-  const pending = requests.filter((r) => r.status === 'pending');
-  const handled = requests.filter((r) => r.status !== 'pending');
+  useEffect(() => {
+    fetchRequests();
+  }, []);
 
   return (
-    <div className="requests-section">
-      <h3>📂 Image Access Requests</h3>
+    <div className="requests-container">
+      <h2>Access Requests</h2>
 
-      <h5>🕓 Pending Requests</h5>
-      {pending.length ? (
-        <div className="request-grid">
-          {pending.map(renderRequestCard)}
-        </div>
-      ) : (
-        <p className="faint">No new requests to review.</p>
-      )}
+      {loading ? (
+        <Spinner />
+      ) : error ? (
 
-      <h5 className="handled-header">✅ Handled Requests</h5>
-      {handled.length ? (
-        <div className="request-grid">
-          {handled.map(renderRequestCard)}
-        </div>
+        <p className="error-text">{error}</p>
       ) : (
-        <p className="faint">No handled requests yet.</p>
+        <>
+          {pendingRequests.length > 0 && (
+            <div className="requests-table-wrapper">
+              <h3 className="section-heading">🔴 Pending Requests</h3>
+              <table className="requests-table pending">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Status</th>
+                    <th>Requested At</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pendingRequests.map((request) => (
+                    <RequestRow
+                      key={request._id}
+                      request={request}
+                      onStatusChange={fetchRequests}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {handledRequests.length > 0 && (
+            <div className="requests-table-wrapper">
+              <h3 className="section-heading">📁 Request History</h3>
+              <table className="requests-table history">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Status</th>
+                    <th>Requested At</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {handledRequests.map((request) => (
+                    <RequestRow
+                      key={request._id}
+                      request={request}
+                      onStatusChange={fetchRequests}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </>
       )}
     </div>
   );

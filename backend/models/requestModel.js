@@ -8,20 +8,16 @@ const requestSchema = new mongoose.Schema({
       path: { type: String }
     }
   ],
+
+  
   status: {
     type: String,
     enum: ['pending', 'approved', 'rejected'],
     default: 'pending',
   },
-  approvedBy: { type: String, default: 'username' }, // ✅ Add this line
-  requestedAt: {
-    type: Date,
-    default: Date.now,
-  },
+  approvedBy: { type: String, default: 'username' }
+}, {
+  timestamps: true  // ✅ Adds createdAt and updatedAt
 });
 
 module.exports = mongoose.model('Request', requestSchema);
-
-
-
-
